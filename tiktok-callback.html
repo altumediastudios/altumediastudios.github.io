@@ -1,0 +1,15 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TikTok authorization · Altumedia</title><link rel="stylesheet" href="style.css"></head><body><main>
+<h1>Altumedia <span>Studios</span></h1>
+<p id="msg">Completing TikTok authorization…</p>
+<p id="manual" style="display:none">If nothing happens, copy this address and give it to the Altumedia Social Engine (<code>auth-finish</code>):<br><textarea id="u" rows="4" style="width:100%"></textarea></p>
+<nav><a href="index.html">Home</a><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a></nav>
+<script>
+var q = location.search;
+document.getElementById('u').value = location.href;
+if (/[?&](code|error)=/.test(q)) {
+  setTimeout(function(){ document.getElementById('manual').style.display='block'; }, 4000);
+  location.replace('http://localhost:3010/api/auth/tiktok/callback' + q);
+} else {
+  document.getElementById('msg').textContent = 'This page receives the TikTok login result for the Altumedia Social Engine (internal tool).';
+}
+</script></main></body></html>
